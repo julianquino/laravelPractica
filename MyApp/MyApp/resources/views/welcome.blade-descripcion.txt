@@ -1,0 +1,1 @@
+donde agregan y crean las vistas para poder mostrar la informacion de nuestra aplicacion en la pantalla, todos lo que sea escribo en este archivo sera visto en la pagina principal de nuestra aplicacion

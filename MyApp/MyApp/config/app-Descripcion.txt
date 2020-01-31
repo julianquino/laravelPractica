@@ -1,0 +1,1 @@
+en el archivo app.php se podria guardar alguna configuracion de nuestra aplicacion asi mismo se podria agregar alguna libreria externa

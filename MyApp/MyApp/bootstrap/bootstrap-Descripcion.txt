@@ -1,0 +1,1 @@
+la carpeta bootstrap la cual es encargada de inicializar nuestra aplicacion

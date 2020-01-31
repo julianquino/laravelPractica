@@ -1,0 +1,1 @@
+En el documento database.php se puete estipular con la base de datos que vamos a trabajar
