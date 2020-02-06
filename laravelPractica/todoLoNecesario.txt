@@ -1,0 +1,105 @@
+----------------------------------------
+comandos de base de datos con laravel
+
+	Schema::create('nombre_de_la_tabla_a_crear',function(Blueprint $table){
+		>$table->increments('id');//incrementa en 1 con con enteros sin signo(increments)
+		>$table->unsignedInteger('profession_id');//profession_id es un entero sin signo
+		>$table->foreign('profession_id')->references('id')->on('professions');// el foreign('profession_id') me dice que la comlumna profession_id se va a comportar como una clave forane, que referencia al id (references('id')) de la tabla professions (on('professions'))
+		>$table->string('mail')->unique();//me dice que el valor de la columna email tiene que se unica para cada usuario
+		>$table->string('profession',100)->nullable();//el segundo parametro me dice que el string tenga como maximo 100 caracteres, el metodo nullable dice que esa columna es opcional, puede o no tener una profesion
+		>$table->rememberToken();//para generar columnas comunes, para almacenar un token para recordar a un usuario que se autentico(para recordarlo postetiormente)
+		>$table->timestamps(); //crea dos columnas created_at y updated_at
+		});
+	//function es una funcion anonima que recibe un argumento del tipo Blueprint(dentro de Illuminate/Database/Schema/Blueprint). al moento de llamar a esta funcion laravel le pasa una tabla del nombre 'nombre_de_la_tabla_a_crear'
+
+	>Schema::dropIfExists('nombre_de_la_tabla_a_eliminar'){};//elimna la tabla con nombre 'nombre_de_la_tabla_a_eliminar'
+		>Schema::table('nombre_de_la_tabla_a_modificar',function(Blueprint $table){
+			>$table->string('profession,50')->nullable();//se agrega esta columna, pero se carga en la ultima columna para cargarlo despues de una comlumna se peude usar ->after('password') que dice que lo ponga despues de la columna 'password'
+		});//crea una nueva columna en la tabla con nombre 'nombre_de_la_tabla_a_modificar'
+		>Schema::table('nombre_de_la_tabla_a_modificar',function(Blueprint $table){
+			>$table->dropColumn('profession');//se elimina la columna 'profession'
+		});//tabla a modificar, elimina una columna a la tabla
+
+migracion:
+	>public function up(){};//migra todo las tablas de una base de datos a laravel
+	>public function down(){};elimina la tabla de migrada (osea revierte lo echo por up());
+
+migraciones comando php:
+	>php artisan migrate
+		//migra las tablas base de datos, usando los archivos que estan dentro de database/migrations, llamndo a la funcion up() de los archivos
+	>php artisan migrate:reset
+		//devuelve todas las migraciones hechas osea retrae lo que se hizo en en artisan migrate, llamdo al metodo down()
+	>php artisan migrate:refresh
+		//este comando primero hace down() y despues up()
+	//ojo: los comandos anteriores son destructivos no se respalda la informacion de la tabla
+	>php artisan make:migration nombre_de_la_migracion
+		//crea una nueva migracion en la carpeta atabase/migrations
+	php artisan migrate:rollback
+		//regresa el ultimo lote hecha
+
+
+laravel funciones
+	carpeta 'routes'
+		>Route::get('test',function(){return algo};
+			//la funcion get es una peticion que se le tiene que devolver lo que pide
+			//el parametro 'test' me dice si alguien ingresa http://127.0.0.1:8000/test se activa el segundo parametro que es una funcion que retorna algo
+			//se algo puede ser una cadena (function(){return 'mi cadena'})o una vista(function(){return view('nombreDeLaVista')})
+		>$name = request('name');
+			//esta funcion busca en la peticion el valor de la variable 'name'
+			por elemplo:
+			127.0.0.1:8000/test?silla=una silla&name=juli
+			el valor de name es 'juli', todo lo que sigue a simbolo '?' es la peticion del usuario, y sus variables se le encadenan con el simbolo '&', en este caso son: silla y name
+
+		>Route::get('/post/{argumentoDinamico}',function($argumentoDinamico){
+		 return $argumentoDinamico;});
+			//el parametro 'argumentoDinamico' es un argumento dinamico que se le pasa a la funcion para que se le pueda utlizar, si os i se le tiene que pasar a la funcion para poder ser usada
+
+		>Route::get('/post/{argumentoDinamico}','nombreDelArchivoEnControl@nombreDeFuncion');	
+
+	carpeta 'resources/views/'
+		al moneto de escribir una en html, puedo esribir codigo en php con
+		<?= 'codigo en php' ?> que es lo mismo que escribir
+		<?php 'codigo' ?> ejemplo:
+		<?= $a; ?> es lo mismo que <?php echo $a; ?>
+		ojo: estos metodos me pueden ejecutar instruuciones que no queres por que el usuario le puede pasar codigo y eso no queres ,para solucionar esto podemos hacer esto:
+		-en laravel se peude usar esto
+			<?php echo e($a) ?>
+			//es una funcion que escribe solo texto osea escapa de html( y tambien de javascrip)
+			<?= e($a) ?>//es mas corta que la anterior
+
+		blade: sistema de plantillas de laravel par usarlo en las vistas (view), en html. ojo hay que agregar al nombre del arhivo el .blade,  ejemplo: vista.blade.php
+			{{ $variable_a_imprimir}} imprime la variable escapando de html, como texto plano
+
+			//sirve para recorrer una coleccion de elementos, donde se epude usar en html
+			>@forreach ($users as $user)
+				<li>{{ $user }}</li>
+			>@endforeach
+
+			>@extends ('layout');
+			//en un archivo view me dice que esta siendo extendida por otra vista llamada layout(resources/view)
+
+			@section ('content')
+				.....
+			@endsection
+
+
+
+
+
+	carpeta 'Controllers'
+		>$post = Post::where('slug',$slug)->first();
+		//en el archivo Post que es un modelo se le pregunta si tiene una tabla que tiene una columna llamda 'slug' y si en esa columna existe el valor de la variable $slug, si existe que sea la primera que encuentre(first()), tambien se puede poner un ->firstOrfail() en vez de first(), esto hace que si no encuentra manda un fallo mandando un abort();
+
+laravel setencia, codificacion, funciones etc
+	unaColeccion = coleccion['referencia'=>'valor','otraReferencia'=>'otroValor'];
+	//quiero buscar un valor, para eso busco la referencia primero. ejemplo: busco otraReferencia
+	$resultado=unaColeccion['otraRefencia'];
+	//me devuelve otroValor, si busco algo que no existe me tira error, pero se puede salvar con la sentencia '??'
+	$resultado= unaColeccion['otraRefencia'] ?? 'valorOFuncionQueQuieraQueHaga';
+	//eso me devuelve el otro contenido
+
+	array_key_exists($Array,$referencia);
+	//devuelve verdadero si existe la referencia en el array es para usarlo con un if o otras cosas
+
+	abort(codigoDeError, 'cadena que quieres que le avise al usuario');
+	//aborta la secuencia

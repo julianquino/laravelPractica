@@ -1,0 +1,1 @@
+Los controladores se encargan de manejar la logica de nuestra aplicacion, es un mecanismo para agrupar peticiones http relacionas dentro de una clase y dividirlas en varios metodos

@@ -1,0 +1,1 @@
+dentro de este documento se estipula las diferentes rutas de nuestra aplicacion. nos permite establecer diferentes rutas utilizando diferentes vistas(resources/views/)
