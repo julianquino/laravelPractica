@@ -17,7 +17,6 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id'); //enteros sin signo que se ca incremetnao
 
             $table->unsignedInteger('profession_id');
-            $table->foreign('profession_id')->references('id')->on('professions');
 
             $table->string('name'); //var char 
             $table->string('email')->unique(); // varchar y es unico por la

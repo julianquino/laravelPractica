@@ -41,7 +41,7 @@ migraciones comando php:
 laravel funciones
 	carpeta 'routes'
 		>Route::get('test',function(){return algo};
-			//la funcion get es una peticion que se le tiene que devolver lo que pide
+			//la funcion get es para solicitar y obtener informacion
 			//el parametro 'test' me dice si alguien ingresa http://127.0.0.1:8000/test se activa el segundo parametro que es una funcion que retorna algo
 			//se algo puede ser una cadena (function(){return 'mi cadena'})o una vista(function(){return view('nombreDeLaVista')})
 		>$name = request('name');
@@ -54,7 +54,14 @@ laravel funciones
 		 return $argumentoDinamico;});
 			//el parametro 'argumentoDinamico' es un argumento dinamico que se le pasa a la funcion para que se le pueda utlizar, si os i se le tiene que pasar a la funcion para poder ser usada
 
-		>Route::get('/post/{argumentoDinamico}','nombreDelArchivoEnControl@nombreDeFuncion');	
+		>Route::get('/post/{argumentoDinamico}','nombreDelArchivoEnControl@nombreDeFuncion');
+
+		>Route::post('/usuarios/crear','nombreDelArchivoEnControl@nombreDeFuncion');
+		//la funcion post envia y procesa informacion
+			
+		>$data = request()->all();
+		//request trae la solicitud que se fue llenada por el usuario(despues que se lleno el formulario se puede usar request() para traer la solicitud osea los datos que fueron llenados), all() trae toda la informacion
+
 
 	carpeta 'resources/views/'
 		al moneto de escribir una en html, puedo esribir codigo en php con
@@ -81,6 +88,8 @@ laravel funciones
 			@section ('content')
 				.....
 			@endsection
+			//si hay codigo adentro de section, esto me dice que ese codigo estara adentro de la extension (@extends ('layout') el archivo llamdo layout), en la posicion del archivo layout donde se defina la directiva
+			//@yield('content')
 
 
 
@@ -103,3 +112,15 @@ laravel setencia, codificacion, funciones etc
 
 	abort(codigoDeError, 'cadena que quieres que le avise al usuario');
 	//aborta la secuencia
+
+	>'password'=>bcrypt(5455);
+	//encripta el valor asi sea un numero una cadena 'cadena'
+
+HTML
+	>{!! csrf_field() !!}
+		//sirve para proteger nuestro navegador de ataques CSRF
+		//agregan un token a nuestro navegador
+		//se puede usar en los formularios asi:
+		//<form method="POST" ....
+		//	{!! csrf_field() !!}
+		//</form>
