@@ -36,7 +36,8 @@ migraciones comando php:
 		//crea una nueva migracion en la carpeta atabase/migrations
 	php artisan migrate:rollback
 		//regresa el ultimo lote hecha
-
+	>php artisan db:seed
+		//agrega ltodos los registros de los seeders a la base de datos
 
 laravel funciones
 	carpeta 'routes'

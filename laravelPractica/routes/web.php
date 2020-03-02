@@ -16,10 +16,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('login','Auth\LoginController@showLoginForm')->name('login');
-Route::post('login','Auth\LoginController@login')->name('login');
-Route::get('logout','Auth\LoginController@logout')->name('logout');
-//Route::get('register','Auth\LoginController@showRegistrationForm');
+Route::middleware('auth')->group(function() {
+	Route::resource('companies',CompanyController::class);
+	Route::resource('subsidiaries',SubsidiaryController::class);
+	Route::resource('shifts',ShiftController::class);
+});
+
+Route::get('companies/{company}/subsidiaries/{subsidiary}/shifts/{shift}','ShiftController@anyShow')->name('shift.anyShow');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 
 
@@ -33,11 +40,7 @@ Route::get('logout','Auth\LoginController@logout')->name('logout');
 
 
 
-
-
-
-
-Route::post('/users/create','UserController@createNewUser');
+/*Route::post('/users/create','UserController@createNewUser');
 
 Route::get('/users/new','UserController@create');
 
@@ -63,4 +66,4 @@ Route::get('/test',function(){
 Route::get('/post/{post}','PostsController@show');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');*/
