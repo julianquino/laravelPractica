@@ -13,65 +13,49 @@ class ShiftsTableSeeder extends Seeder
     {
         DB::table('shifts')->insert([
         	'subsidiary_id' => 1,
-            'name' => 'turnera 1 de subsidiary 1, creador 1',
+            'name' => 'turnera 1',
             'prefix' => 'A',
-            'turn' => '01',
+            'turn' => 99,
             'creator_id'=> 1,
         ]);
 
         DB::table('shifts')->insert([
         	'subsidiary_id' => 1,
-            'name' => 'turnera 2 de subsidiary 1, creador 2',
+            'name' => 'turnera 2',
             'prefix' => 'B',
             'turn' => '02',
-            'creator_id'=> 2,
-        ]);
-
-        DB::table('shifts')->insert([
-        	'subsidiary_id' => 1,
-            'name' => 'turnera 3 de subsidiary 1, creador 3',
-            'prefix' => 'C',
-            'turn' => '03',
             'creator_id'=> 3,
         ]);
 
         DB::table('shifts')->insert([
         	'subsidiary_id' => 1,
-            'name' => 'turnera 4 de subsidiary 1, creador 1',
-            'prefix' => 'D',
-            'turn' => '04',
-            'creator_id'=> 1,
-        ]);
-
-
-        DB::table('shifts')->insert([
-        	'subsidiary_id' => 2,
-            'name' => 'turnera 1 de subsidiary 2, creador 1',
-            'prefix' => 'A',
-            'turn' => '01',
-            'creator_id'=> 1,
-        ]);
-        DB::table('shifts')->insert([
-        	'subsidiary_id' => 2,
-            'name' => 'turnera 2 de subsidiary 2, creador 1',
-            'prefix' => 'B',
-            'turn' => '02',
-            'creator_id'=> 1,
-        ]);
-        DB::table('shifts')->insert([
-        	'subsidiary_id' => 2,
-            'name' => 'turnera 3 de subsidiary 2, creador 1',
+            'name' => 'turnera 3',
             'prefix' => 'C',
             'turn' => '03',
-            'creator_id'=> 1,
+            'creator_id'=> 4,
+        ]);
+
+        DB::table('shifts')->insert([
+        	'subsidiary_id' => 2,
+            'name' => 'turnera 4',
+            'prefix' => 'D',
+            'turn' => '04',
+            'creator_id'=> 4,
         ]);
 
         DB::table('shifts')->insert([
         	'subsidiary_id' => 3,
-            'name' => 'turnera 1 de subsidiary 3, creador 1',
+            'name' => 'turnera 5',
             'prefix' => 'A',
             'turn' => '01',
-            'creator_id'=> 1,
+            'creator_id'=> 6,
+        ]);
+        DB::table('shifts')->insert([
+        	'subsidiary_id' => 3,
+            'name' => 'turnera 6',
+            'prefix' => 'B',
+            'turn' => '02',
+            'creator_id'=> 6,
         ]);
 
     }

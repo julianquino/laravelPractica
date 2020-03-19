@@ -8,6 +8,13 @@
                 <div class="card-header">{{ __('Editar Subsidiaria') }}</div>
 
                 <div class="card-body">
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            @foreach ($errors->all() as $message)
+                                <li>{{ $message }}</li>
+                            @endforeach
+                        </div>
+                    @endif
                     <form method="POST" action="{{ Route('subsidiaries.update', ['subsidiary'=>$subsidiary->id]) }}">
                         @method('PUT')
                         @csrf
@@ -15,26 +22,14 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre de Subsidiaria') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $subsidiary->name }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input id="name" type="text" class="form-control" name="name" value="{{ $subsidiary->name }}" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __("Subsidiaria direccion") }}</label>
-
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control @error('description') is-invalid @enderror" name="address" value="{{ $subsidiary->address }}" required autocomplete="address" autofocus>
-                                @error('description')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input id="address" type="text" class="form-control" name="address" value="{{ $subsidiary->address }}" required>
                             </div>
                         </div>
                         <input id="company_id" name="company_id" type="hidden" value="{{ Auth::user()->company->id }}">

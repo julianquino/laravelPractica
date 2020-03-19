@@ -13,6 +13,7 @@
                             <th>Nombre</th>
                             <th>Prefijo</th>
                             <th>Turno</th>
+                            <th>ID_Turnera</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -22,6 +23,7 @@
                                 <td><a href="{{ route('shifts.show', ['shift'=>$shift->id ]) }}"> {{$shift->name}}</td>
                                 <td>{{$shift->prefix}}</td>
                                 <td>{{$shift->turn}}</td>
+                                <td>{{$shift->id}}</td>
                                 <td>
                                     @if(Auth::user()->isPermittedEditShift(Auth::user()->company, $shift->subsidiary, $shift))
                                         <div class="btn-group">

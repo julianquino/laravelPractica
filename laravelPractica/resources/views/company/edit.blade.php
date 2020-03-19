@@ -12,33 +12,20 @@
                         @method('PUT')
                         @csrf
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name Company') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre de Compañia') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $company->name }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input id="name" type="text" class="form-control" name="name" value="{{ $company->name }}" required>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="description" class="col-md-4 col-form-label text-md-right">{{ __("Company's description") }}</label>
-
+                            <label for="description" class="col-md-4 col-form-label text-md-right">{{ __("Descripción de la Compañia") }}</label>
                             <div class="col-md-6">
-                                <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ $company->description }}" required autocomplete="description" autofocus>
-                                @error('description')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input id="description" type="text" class="form-control" name="description" value="{{ $company->description }}" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="logo" class="col-md-4 col-form-label text-md-right">{{ __("Logo de la compañia") }}</label>
-
                             <div class="col-md-6">
                                 <input id="logo" type="file" name="logo">
                             </div>

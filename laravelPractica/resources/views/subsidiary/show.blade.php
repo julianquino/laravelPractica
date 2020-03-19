@@ -10,10 +10,7 @@
                 </div>
                 <div class="card-header">
                     Descripción de la sucursal: {{$subsidiary->address}}
-                 </div>
-                <div class="card-header">
-                     <a href="{{ route('shifts.index') }}">Ver lista de turnos</a>
-                </div> 
+                </div>
                 @if(Auth::user()->isPermittedEditSubsidiary(Auth::user()->company, $subsidiary))
                     <div class="col-md-6 offset-md-4">
                         <div class="btn-group">

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\CompanyController;
-use App\Company;
 use Auth;
 class HomeController extends Controller
 {
@@ -25,7 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     { 
-        return view('home');
-
+        return view('admin');
+        /*if(Auth::User()->company_id){
+            return view('admin');
+            return redirect()->route('companies.show',['company'=>Auth::user()->company_id]);
+        }
+        return view('home');*/
     }
 }

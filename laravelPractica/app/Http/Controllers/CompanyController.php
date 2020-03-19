@@ -7,7 +7,8 @@ use App\Company;
 use Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
-
+use App\Http\Requests\CompanyStoreRequest;
+use App\Http\Requests\CompanyUpdateRequest;
 class CompanyController extends Controller
 {
     public function __construct() {
@@ -18,36 +19,42 @@ class CompanyController extends Controller
     	return view('company.register');
     }
 
-    public function store(Request $request) {
-        $company = company::create($request->all());
+    public function store(CompanyStoreRequest $request) {
+        $company = Company::create($request->all());
         if($request->file('logo')) {
             $path = Storage::disk('public')->put('logos',$request->file('logo'));
-            $company->fill(['logo'=> asset($path)])->save();
+            $company->logo = $path;
+            $company->save();
         }
-        Auth::user()->update(['company_id'=>Company::where('owner_id', Auth::user()->id)->firstOrFail()->id]);
+        Auth::user()->update(['company_id'=>$company->id]);
     	return redirect()->route('companies.show',['company'=>Auth::user()->company->id]);
     }
 
     public function show(Company $company) {
-        return view('company.show',['company'=>$company]);
+        return $company;
+        //return view('company.show',['company'=>$company]);
     }
 
     public function edit(Company $company) {
         return view('company.edit',['company'=>$company]);
     }
 
-    public function update(Request $request,Company $company) {
+    public function update(CompanyUpdateRequest $request,Company $company) {
         if($request->file('logo')) {
+            Storage::disk('public')->delete($company->logo);
             $path = Storage::disk('public')->put('logos',$request->file('logo'));
-            $company->logo = asset($path);
+            $company->logo = $path;
             $company->save();
         }
         $company->update($request->all());
         return redirect()->route('companies.show',['company'=>$company->id]);
     }
+
+    public function getCompany(){
+        return Company::findOrFail(Auth::user()->company->id);
+    }
     public function index(){
-        //no permitido
-        return redirect()->route('companies.show',['company'=>Auth::user()->company_id]);
+        return 'no permitido';
     }
 
     public function destroy() {

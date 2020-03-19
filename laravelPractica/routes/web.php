@@ -17,9 +17,10 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function() {
-	Route::resource('companies',CompanyController::class);
-	Route::resource('subsidiaries',SubsidiaryController::class);
-	Route::resource('shifts',ShiftController::class);
+	Route::resource('/companies',CompanyController::class);
+	Route::resource('/subsidiaries',SubsidiaryController::class);
+	Route::resource('/shifts',ShiftController::class);
+
 });
 
 Route::get('companies/{company}/subsidiaries/{subsidiary}/shifts/{shift}','ShiftController@anyShow')->name('shift.anyShow');
@@ -27,8 +28,7 @@ Route::get('companies/{company}/subsidiaries/{subsidiary}/shifts/{shift}','Shift
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-
+Route::get('/myCompany', 'CompanyController@getCompany');
 
 
 

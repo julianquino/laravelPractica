@@ -13,36 +13,24 @@ class SubsidiariesTableSeeder extends Seeder
     {
         DB::table('subsidiaries')->insert([
         	'company_id' => 1,
-            'name' => 'subsudiaries 1, de compañia 1, creador 1',
-            'address' => 'avCompany1 sub1',
+            'name' => 'Sucursal 1',
+            'address' => 'direccion de sucursal 1',
             'creator_id'=> 1,
         ]);
 
         DB::table('subsidiaries')->insert([
         	'company_id' => 1,
-            'name' => 'subsudiaries 2, de compañia 1, creador 2',
-            'address' => 'avCompany1 sub2',
+            'name' => 'Sucursal 2',
+            'address' => 'direccion de sucursal 2',
             'creator_id'=> 2,
         ]);
 
         DB::table('subsidiaries')->insert([
-        	'company_id' => 1,
-            'name' => 'subsudiaries 3, de compañia 1, creador 1',
-            'address' => 'avCompany1 sub3',
-            'creator_id'=> 1,
+        	'company_id' => 2,
+            'name' => 'Sucursal 3',
+            'address' => 'direccion de sucursal 3',
+            'creator_id'=> 6,
         ]);
 
-        DB::table('subsidiaries')->insert([
-        	'company_id' => 2,
-            'name' => 'subsudiaries 1 de compañia 2, creador 5',
-            'address' => 'avCompany2 sub1',
-            'creator_id'=> 5,
-        ]);
-        DB::table('subsidiaries')->insert([
-            'company_id' => 2,
-            'name' => 'subsudiaries 1 de compañia 2, creador 5',
-            'address' => 'avCompany2 sub1',
-            'creator_id'=> 5,
-        ]);
     }
 }

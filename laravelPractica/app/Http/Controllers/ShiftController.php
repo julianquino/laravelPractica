@@ -9,14 +9,20 @@ use App\Shift;
 use App\Company;
 use App\Subsidiary;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Collection;
 class ShiftController extends Controller
 {
 
     public function __construct() {
         $this->authorizeResource(Shift::class, 'shift');
     }
+
     public function index() {
-       	return view('shift.index',['subsidiaries'=>Auth::user()->company->subsidiaries]);
+        $shifts = new Collection();
+        foreach  (Auth::user()->company->subsidiaries as $subsidiary){
+            $shifts = $shifts->merge($subsidiary->shifts);
+        }
+        return $shifts;
     }
 
     public function show(Shift $shift) {
@@ -28,8 +34,7 @@ class ShiftController extends Controller
     }
 
     public function store(Request $request) {
-        $shift = new Shift;
-        $shift->create($request->all());
+        Shift::create($request->all());
     	return redirect()->route('shifts.index');
     }
 
@@ -39,7 +44,7 @@ class ShiftController extends Controller
 
     public function update(Request $request, Shift $shift) {
         $shift->update($request->all());
-        return redirect()->route('shifts.index');
+        return $shift;
     }
 
     public function destroy (Shift $shift) {

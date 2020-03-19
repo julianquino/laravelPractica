@@ -7,6 +7,8 @@ use App\Subsidiary;
 use App;
 use Auth;
 use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\SubsidiaryStoreRequest;
+use App\Http\Requests\SubsidiaryUpdateRequest;
 
 class SubsidiaryController extends Controller {
 
@@ -18,9 +20,8 @@ class SubsidiaryController extends Controller {
     	return view('subsidiary.register');
     }
 
-    public function store(Request $request) {
-        $subsidiary = new Subsidiary;
-        $subsidiary->create($request->all());
+    public function store(SubsidiaryStoreRequest $request) {
+        Subsidiary::create($request->all());
     	return redirect()->route('subsidiaries.index');
     }
 
@@ -36,7 +37,7 @@ class SubsidiaryController extends Controller {
         return view('subsidiary.edit',['subsidiary'=>$subsidiary]);
     }
 
-    public function update(Request $request, Subsidiary $subsidiary) {
+    public function update(SubsidiaryUpdateRequest $request, Subsidiary $subsidiary) {
         $subsidiary->update($request->all());
         return redirect()->route('subsidiaries.index');
     }
