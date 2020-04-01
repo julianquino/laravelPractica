@@ -22,15 +22,20 @@ let routes = [
     },
     {
         path: '/subsidiaries',
-        component: require('./views/subsidiary').default,
+        component: require('./views/subsidiaries').default,
         props: true
     },
+    /*{
+        path: '/shifts',
+        component: require('./views/shifts').default,
+        props: true
+    },*/
 
 ];
 
 
 export default new VueRouter({
-    base: '/',
+    base: '/admin',
     mode: 'history',
     routes,
     linkActiveClass: 'active'

@@ -1,1 +1,0 @@
-nos permite almacenar diferentes documento que el usuario pueda enviar hacia nuestra aplicacion o acceder a los diferentes tipos de documentos logs para poder ver el historial de nuetra aplicacion

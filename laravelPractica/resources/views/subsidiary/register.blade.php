@@ -33,8 +33,6 @@
                                 <input id="address" type="text" class="form-control" name="address"  value="{{ old('address') }}" required>
                             </div>
                         </div>
-                        <input id="company_id" name="company_id" type="hidden" value="{{ Auth::user()->company->id }}">
-                        <input id="creator_id" name="creator_id" type="hidden" value="{{ Auth::user()->id }}">
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

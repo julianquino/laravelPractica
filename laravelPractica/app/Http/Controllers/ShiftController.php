@@ -34,8 +34,10 @@ class ShiftController extends Controller
     }
 
     public function store(Request $request) {
-        Shift::create($request->all());
-    	return redirect()->route('shifts.index');
+        $shitf = Shift::create($request->all());
+        $shitf->creator_id = Auth::user()->id;
+        $shitf->save();
+    	return $shitf;
     }
 
     public function edit(Shift $shift) {

@@ -4,3 +4,4 @@ php artisan serve
 devolvera algo al estilo: "Laravel development server started: http://127.0.0.1:8000"
 donde http://127.0.0.1:8000 es la ruta de nuestra aplicacion
 
+Estaría bueno si a los commits les pones un prefijo... por ejemplo, si es un arreglo FIX: Subsidiaries listing fixed, si es una mejora IMPROVE: Refactoring subsidiary view, NEW: Adding subsidiaries

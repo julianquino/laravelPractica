@@ -21,8 +21,13 @@ class SubsidiaryController extends Controller {
     }
 
     public function store(SubsidiaryStoreRequest $request) {
-        Subsidiary::create($request->all());
-    	return redirect()->route('subsidiaries.index');
+        $subsidiary = new Subsidiary;
+        $subsidiary->name = $request->name;
+        $subsidiary->address = $request->address;
+        $subsidiary->company_id = Auth::user()->company_id;
+        $subsidiary->creator_id = Auth::user()->id;
+        $subsidiary->save();
+        return $subsidiary;
     }
 
     public function show(Subsidiary $subsidiary) {
@@ -30,7 +35,7 @@ class SubsidiaryController extends Controller {
     }
 
     public function index() {
-        return view('subsidiary.index',['subsidiaries'=>Auth::user()->company->subsidiaries]);
+        return Auth::user()->company->subsidiaries;
     }
 
     public function edit(Subsidiary $subsidiary) {
@@ -39,11 +44,10 @@ class SubsidiaryController extends Controller {
 
     public function update(SubsidiaryUpdateRequest $request, Subsidiary $subsidiary) {
         $subsidiary->update($request->all());
-        return redirect()->route('subsidiaries.index');
+        return $subsidiary;
     }
 
     public function destroy (Subsidiary $subsidiary) {
         $subsidiary->delete();
-        return redirect()->route('subsidiaries.index');
     }
 }

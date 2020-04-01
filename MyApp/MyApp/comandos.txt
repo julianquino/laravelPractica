@@ -1,5 +1,0 @@
--sirve para crear un nuevo controlador:
-php artisan make:controller nombreDelNuevoControlador
-
--sirve para crear un nuevo archivo de test en feature:
-php artisan make:test UsuarioModuloTest

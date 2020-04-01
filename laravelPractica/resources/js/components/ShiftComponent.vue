@@ -26,12 +26,12 @@
         props: ['shift'],
         data(){
             return {
-                shift: [],
+
             }
         },
         methods: {
             increaseShift: function(shift){
-                var urlupdate='shifts/' + shift.id;
+                /*var urlupdate='shifts/' + shift.id;
                 if ( shift.turn == 99)
                    shift.turn = 1;
                 else
@@ -40,7 +40,8 @@
                 axios.put(urlupdate,params).then(response =>{
                     this.shift = response.data;
                     this.getTasks();
-                })
+                })*/
+                this.$emit('update',shift)
             },
         }   
     }

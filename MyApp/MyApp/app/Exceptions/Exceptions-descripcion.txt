@@ -1,1 +1,0 @@
-dentro del documento Handler.php se puede presonalizar excepciones que ocurren en mi aplicacion

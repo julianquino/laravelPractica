@@ -36,7 +36,6 @@
                                 <input id="logo" type="file" name="logo">
                             </div>
                         </div>
-                        <input id="owner_id" name="owner_id" type="hidden" value="{{ Auth::user()->id }}">
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

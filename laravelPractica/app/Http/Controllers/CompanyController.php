@@ -21,13 +21,14 @@ class CompanyController extends Controller
 
     public function store(CompanyStoreRequest $request) {
         $company = Company::create($request->all());
+        $company->owner_id = Auth::user()->id;
         if($request->file('logo')) {
             $path = Storage::disk('public')->put('logos',$request->file('logo'));
             $company->logo = $path;
-            $company->save();
         }
+        $company->save();
         Auth::user()->update(['company_id'=>$company->id]);
-    	return redirect()->route('companies.show',['company'=>Auth::user()->company->id]);
+    	return $company;
     }
 
     public function show(Company $company) {
@@ -47,7 +48,7 @@ class CompanyController extends Controller
             $company->save();
         }
         $company->update($request->all());
-        return redirect()->route('companies.show',['company'=>$company->id]);
+        return $company;
     }
 
     public function getCompany(){

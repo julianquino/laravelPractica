@@ -20,17 +20,23 @@ Route::middleware('auth')->group(function() {
 	Route::resource('/companies',CompanyController::class);
 	Route::resource('/subsidiaries',SubsidiaryController::class);
 	Route::resource('/shifts',ShiftController::class);
-
+	Route::resource('/users',UserController::class);
+	Route::get('/authUser','UserController@authUser');
+	/*Route::get('/users','UserController@index');
+	Route::get('/users/{id}','UserController@show');*/
 });
+
 
 Route::get('companies/{company}/subsidiaries/{subsidiary}/shifts/{shift}','ShiftController@anyShow')->name('shift.anyShow');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/myCompany', 'CompanyController@getCompany');
-
-
+Route::get('/admin/home', 'HomeController@index')->name('home');
+Route::get('/admin/companies', 'HomeController@show')->name('companies');
+Route::get('/admin/subsidiaries', 'HomeController@show')->name('subsidiaries');
+Route::get('/admin', function () {
+    return view('/admin');
+});
 
 
 

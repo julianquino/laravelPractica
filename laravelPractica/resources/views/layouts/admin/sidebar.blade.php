@@ -24,7 +24,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
 
-                <li class="nav-item">
+               <li class="nav-item">
                     <router-link tag="a" to="/companies" class="nav-link">
                         <i class="nav-icon fas fa-building"></i>
                         <p>Compañia</p>
@@ -36,6 +36,12 @@
                         <p>Sucursales</p>
                     </router-link>
                 </li>
+                <!--<li class="nav-item">
+                    <router-link tag="a" to="/shifts" class="nav-link">
+                        <i class="nav-icon fas fa-landmark"></i>
+                        <p>Turnos</p>
+                    </router-link>
+                </li>-->
                 <li class="nav-item">
                     <router-link tag="a" to="/dashboard" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
